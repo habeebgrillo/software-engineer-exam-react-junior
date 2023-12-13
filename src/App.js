@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { } from 'react';
 import './App.css';
+
 
 const fields = [
     { name: "field_name", label: "Name", type: "text" },
@@ -9,16 +10,37 @@ const fields = [
 
 class App extends React.Component {
 
-    render(){
+    formRef = React.createRef();
 
+    componentDidMount() {
+        this.createFormElements();
+    }
+
+    createFormElements = () => {
+        fields.forEach((field) => {
+            const label = document.createElement("label");
+            label.textContent = field.label;
+
+            const input = document.createElement("input");
+            input.type = field.type;
+
+            this.formRef.current.appendChild(label);
+            this.formRef.current.appendChild(input);
+
+            label.addEventListener("click", () => {
+                input.focus();
+            });
+        });
+    };
+
+
+    render() {
         return (
-        
-<div>
+            <div>
+                <h1>Webtrends Optimize Software Engineer exam</h1>
+                <form ref={this.formRef}></form>
+            </div>
 
-    <h1>Webtrends Optimize Software Engineer exam</h1>
-    <form></form>
-</div>
-            
         );
 
     }
