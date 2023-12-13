@@ -1,5 +1,6 @@
 import React, { } from 'react';
 import './App.css';
+import New from './new';
 
 
 const fields = [
@@ -16,8 +17,11 @@ class App extends React.Component {
         this.createFormElements();
     }
 
+    // Function to create form elements dynamically
     createFormElements = () => {
         fields.forEach((field) => {
+
+
             const label = document.createElement("label");
             label.textContent = field.label;
 
@@ -27,6 +31,7 @@ class App extends React.Component {
             this.formRef.current.appendChild(label);
             this.formRef.current.appendChild(input);
 
+            // Add click event listener to label to focus on input
             label.addEventListener("click", () => {
                 input.focus();
             });
@@ -36,9 +41,10 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>Webtrends Optimize Software Engineer exam</h1>
                 <form ref={this.formRef}></form>
+                <New text="hello" />
             </div>
 
         );
